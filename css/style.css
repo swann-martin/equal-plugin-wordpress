@@ -1,0 +1,185 @@
+body {
+    background-color: #eaf4d5;
+}
+
+.tasks {
+    width: 80vw;
+    margin: auto;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid pink;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 5%;
+}
+
+
+.task_left {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-top: 2%;
+}
+
+.task_name {
+    font-size: 24px;
+    margin-left: 5%;
+}
+
+.task_name,
+.task_priority {
+    flex: 1;
+}
+
+.task_priority {
+    display: flex;
+    flex: 0;
+
+}
+
+.task_done {
+    margin-right: 5%
+}
+
+.task_name_green {
+    color: #486d00;
+    font-weight: 500;
+}
+
+.task_name_red {
+    color: orangered;
+    font-weight: 500;
+}
+
+.task_green {
+    border: solid 2px;
+    border-color: #486d00;
+}
+
+.task_red,
+.task_green {
+    background-color: white;
+    border-radius: 20px;
+    width: 40%;
+    margin-left: 30%;
+}
+
+
+.task_category,
+.task_assignee {
+    flex: 1
+}
+
+.task_assignee {
+    justify-content: flex-end;
+    margin-right: 5%;
+    display: flex;
+}
+
+.task_category>p {
+    border-radius: 20px;
+    color: white;
+    background-color: #486d00;
+    width: 40%;
+    text-align: center;
+}
+
+.task_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1%;
+    margin-left: 5%;
+}
+
+.tasks_title>h2 {
+    text-align: center;
+    margin-top: 5%;
+    margin-right: 10%
+}
+
+label {
+    font-weight: bold;
+}
+
+.task_description {
+    --max-lines: 3;
+
+}
+
+
+
+
+.task-item {
+    border: solid 1px;
+    border-radius: 20px;
+    height: 30%;
+    margin-left: 5%;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+
+@media screen and (max-width:789px) {
+    .tasks_title>h2 {
+        text-align: center;
+        margin-right: 5%;
+        font-weight: 500;
+    }
+
+    .tasks {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        max-width: 80%;
+        max-height: 80%;
+    }
+
+    .task {
+        max-width: 80%;
+        max-height: 80%;
+        display: flex;
+    }
+
+    .task_name {
+        font-size: 15px;
+        margin-top: 5%
+    }
+
+    .task_description {
+        margin-top: 10%
+    }
+
+    .task_categoy {
+        width: 100%;
+        display: flex;
+        flex: 0;
+    }
+
+    .task_category>p {
+        width: 50%
+    }
+
+    .task_priority {
+        display: flex;
+        flex: 0;
+        margin-top: 5%;
+    }
+
+    .task_done {
+        margin-top: 5%
+    }
+
+    .task_assignee {
+        display: flex;
+        flex: 0;
+    }
+
+
+
+}
