@@ -4,83 +4,6 @@ In this document, we will explain the configuration of wordpress in eQual and ho
 
 But first, we will see how can we create some tasks in wordpress and then with eQual. We want to create tasks as an example.
 
-<!-- ## eQual installation OPTIONAL
-<details>
-  <summary>Open me : docker-compose.yaml</summary>
-
-We need to install eQual first. To do that, we will create a new folder, inside we need to create a new  `docker-compose.yml` file.
-
-Create a docker-compose.yaml file and write in :
-
-**docker-compose.yaml**
-
-```yaml
-version: '3'
-services:
-  equal_srv:
-    image: equalframework/equal
-    container_name: equal.local
-    restart: always
-    ports:
-      - 80:80
-    volumes:
-      - /var/www/html
-    extra_hosts:
-      - "equal.local:127.0.0.1"
-    hostname: equal.local
-    domainname: local
-    environment:
-      - EQ_DB_HOST=equal_db
-      - EQ_DB_USER=root
-      - EQ_DB_PASS=test
-      - EQ_DB_NAME=equal
-    links:
-      - equal_db
-    networks:
-      - dockerwp
-  equal_db:
-    image: mysql:5.7
-    restart: always
-    ports:
-      - 3306:3306
-    environment:
-      - MYSQL_DATABASE=equal
-      - MYSQL_ROOT_PASSWORD=test
-
-```
-
-Now, open a terminal in the same file's directory.
-
-Run : 
-
-```bash
-docker compose up -d
-```
-
-This will create a new container on docker. If you have docker desktop you can check the containers are running.
-
-**illustration of docker containers in docker desktop**
-
-<img src="./wp-equal-img-en/container_docker.png" alt="illustration of docker containers in docker desktop"/>
-
-In our case, we have installed phpmyadmin, we will see it below on the worpdress integration section.
-
-### eQual in VS Code
-
-Open you IDE. We use VSCode with dev container extension. To open the container:
-
-Open `Remote Explorer` and click on the container `equal.local` with the arrow on the right and navigate to `cd /var/wwww/html` where the framework is at.
-- Equal.local container in Remote explorer in vscode
-
-<img src="./wp-equal-img-en/container.png" alt="illustration of docker containers in Remote explorer in vscode"/>
-
-
-- /public folder in equal container
-
-<img src="./wp-equal-img-en/equal_container.png" alt="illustration of public directory in equal">
-
-</details> -->
-
 ## New docker-compose file to install Wordpress.
 
 <details>
@@ -157,7 +80,7 @@ This will create a new container on docker. If you have docker desktop you can c
 
 **illustration of docker containers in docker desktop**
 
-<img src="./wp-equal-img-en/container_docker.png" alt="illustration of docker containers in docker desktop"/>
+<img src="./assets/container_docker.png" alt="illustration of docker containers in docker desktop"/>
 
 In our case, we have installed phpmyadmin, we will see it below on the worpdress integration section.
 
@@ -168,12 +91,12 @@ Open you IDE. We use VSCode with dev container extension. To open the container:
 Open `Remote Explorer` and click on the container `equal.local` with the arrow on the right and navigate to `cd /var/wwww/html` where the framework is at.
 - Equal.local container in Remote explorer in vscode
 
-<img src="./wp-equal-img-en/container.png" alt="illustration of docker containers in Remote explorer in vscode"/>
+<img src="./assets/container.png" alt="illustration of docker containers in Remote explorer in vscode"/>
 
 
 - /public folder in equal container
 
-<img src="./wp-equal-img-en/equal_container.png" alt="illustration of public directory in equal">
+<img src="./assets/equal_container.png" alt="illustration of public directory in equal">
 
 
 
@@ -196,14 +119,14 @@ Open `Remote Explorer` and click on the container `equal.local` with the arrow o
 
 In the extracted `wordpress` folder, are all sources files from wordpress.
 
-   <img src="./wp-equal-img-en/wordpress_files.png">
+   <img src="./assets/wordpress_files.png">
 
 Rename the current `/public/index.php` into `/public/equal.php`
 Under `/public/`. This will make the wordpress blog page the page we access when navigating to http://equal.local/.
 
 Select the all files and folder and move them to the`public/wordpress` folder in `equal_wordpress` container.
 
-<img src="./wp-equal-img-en/wordpress_equal.png">
+<img src="./assets/wordpress_equal.png">
 
 `public/assets/env/config.json`
 ```json
@@ -309,7 +232,7 @@ You should continue the installation in the browser and wordpress will create it
 
 **Example of wp-config.php**
 <details>
-  <summary>Open me</summary>
+  <summary>Example of wp-config.php</summary>
 
 ```php
 <?php
@@ -461,7 +384,7 @@ To checks :
 
 We can see our equal database with packages from equal and tables for wordpress.
 
-<img src="./wp-equal-img-en/equal_db.png">
+<img src="./assets/equal_db.png">
 
 </details>
 
@@ -474,12 +397,12 @@ We can see our equal database with packages from equal and tables for wordpress.
 
 ## Wordpress in Vs Code
 
-To get informations from our database and display them in a page we need to use shortcodes.
+To get some pieces of information from our database and display them in a page we need to use shortcodes.
 
 First, we need to know how can we develop with wordpress in Visual Studio Code.
 
 
-- open your`src` folder in VS code. We see some directories, the most important directory is `wp_content`.
+- open your `src` folder in VS code. We see some directories, the most important directory is `wp_content`.
 
 This is the folder where we will develop.
 
@@ -493,7 +416,7 @@ When we have installed wordpress with our docker-compose, a new src folder was c
 <summary>Creating a Wordpress plugin and child theme</summary>
 
 **View of wp-content directory in vscode**
-<img src="./wp-equal-img-en/src_folder.png" alt="pic of wp-content directory content in vscode">
+<img src="./assets/src_folder.png" alt="pic of wp-content directory content in vscode">
 
 In Wordpress a good practice is to create a child theme if you want to add features so that your features will not be overwritten and erased when the main theme is updated to a new version.
 For instance, to create a child theme base on theme Twenty Twenty Four, you just need to create a directory in `public/wordpress/wp-content/themes/twentytwentyfour-child` and add a file inside with some description of the theme.
@@ -543,11 +466,11 @@ At this part of the document, Wordpress is installed in eQual. We will see now h
 
 2.   Then, go on your Wordpress dashboard, in plugins, we need to activate our new plugin.
 
-<img src="./wp-equal-img-en/equal_plugin.png">
+<img src="./assets/equal_plugin.png">
 
 
 
-<img src="./wp-equal-img-en/plugins.png">
+<img src="./assets/plugins.png">
 
  We will copy the `equal.bundle.js` file in our `js` folder. This file will be used by eQual. Just copy the `equal.bundle.js` file in : `{equal}/public/assets/js/equal.bundle.js` and paste it in `public/wordpress/wp-content/plugins/equal/js/equal.bundle.js`.
 
@@ -681,7 +604,7 @@ class Menu {
 
 As we can see below in the picture, eQual Users from core package are displayed. The `client.list.default` is now in the menu.
 
-<img src="./wp-equal-img-en/equal_users.png" alt="picture of eQual Users list view in wordpress admin dashboard">
+<img src="./assets/equal_users.png" alt="picture of eQual Users list view in wordpress admin dashboard">
 
 </details>
 
@@ -691,11 +614,10 @@ As we can see below in the picture, eQual Users from core package are displayed.
 
 Now, for our tasks, we want to create a new user but when we click on the `create` button, the view form show anything. We need first to create a new account and log in  in equal.local/auth because we don't have the permission. We also need to do some changes in our `.htaccess` file to get the user info with a token.
 
-<!-- <img src="./wp-equal-img-en/htaccess_modif.png" alt="picture of htaccess in /public"> -->
 
 Rewriting the .htaccess
 
-**public//.htaccess**
+**public/.htaccess**
 ```ruby
 Options -Indexes
 DirectoryIndex index.php equal.php index.html
@@ -739,45 +661,33 @@ Add a user as a member of a given group : this will give the new user permission
 ./equal.run --do=group_add-user --group=users --user=3
 ```
 
-<img src="./wp-equal-img-en/equal_auth.png">
+<img src="./assets/equal_auth.png">
 
 We can check our credentials in our database in phpmyadmin.
 
-<img src="./wp-equal-img-en/credentials_db.png">
+<img src="./assets/credentials_db.png">
 
 We can log in with our credentials :
 
 Go on : `equal.local/auth`
 
-<img src="./wp-equal-img-en/login.png" alt="login screen from equal">
+<img src="./assets/login.png" alt="login screen from equal">
 
 When we click on the `connect` button, we don't redirect on the welcome page but we have our taken in a cookie.
 
 
 
-<img src="./wp-equal-img-en/auth_cookie.png">
+<img src="./assets/auth_cookie.png">
 
 As we can see in our picture, we have our cookie from our log in in `Set-Cookie`. Because of this, we can now go on our form view by the `create ` button.
 
-<img src="./wp-equal-img-en/view_form.png">
 
-In our view form, we can't change our boolean buttons.
-
+Now, we have our `htaccess `, when we are logged in, we can see information about our `userinfo` like on the picture below.
 
 
-
-
-Now, we have our `htaccess `, when we are logged in, we can see the informations about our `userinfo` like on the picture below.
-
-
-
-<img src="./wp-equal-img-en/userinfo_modif.png">
+<img src="./assets/userinfo_modif.png">
 
 When we go on `equal.local/ `, we have a wordpress welcome page.
-
-
-
-<img src="./wp-equal-img-en/equal.local_modif.png">
 
 
 </details>
@@ -804,9 +714,6 @@ When we have our classes and views, now let us init the package.
 ```
 
 Check the tables are created in the database.
-
-   <img src="./wp-equal-img-en/tasks_db.png" alt="tasks tables in phpmyadmin">
-
 
 </details>
 
@@ -933,7 +840,7 @@ class Menu
                 type: 'parent',
                 children: [
                     {
-                        name: 'Emloyees',
+                        name: 'Employees',
                         description: 'Users of eQual',
                         icon: 'person',
                         type: 'entry',
@@ -1056,7 +963,7 @@ Note: To display the tasks, we make sure we have permissions to read data from o
 
 At this step, we can use our shortcode and put them in our page.
 
-Go to equal.local to your wordpress index page, click on edit page ![edit](./wp-equal-img-en/edit.png) add a shortcode component with the shortcode :`[equal_projects]`.
+Go to equal.local to your wordpress index page, click on edit page, then add a shortcode component with the shortcode :`[equal_projects]`.
 
 When we go to the wordpress page, we will now see our projects.
 
