@@ -4,11 +4,7 @@ In this document, we will explain the configuration of wordpress in eQual and ho
 
 But first, we will see how can we create some tasks in wordpress and then with eQual. We want to create tasks as an example.
 
-## New docker-compose file to install Wordpress.
-
-<details>
-<summary>Create or update your docker-compose.yaml file</summary>
-
+## Create or update your docker-compose.yaml file to install Wordpress
 **docker-compose.yaml**
 
 ```yaml
@@ -101,25 +97,22 @@ Open `Remote Explorer` and click on the container `equal.local` with the arrow o
 
 
 
-</details>
+
 
 ## Wordpress installation
 
 
 ### Add Worpdress files inside eQual /public
 
-<details>
-<summary>Copy Wordpress files in /public/</summary>
-
 1. Go to [wordpress.org](https://wordpress.org/) and download the wordpress 6.3 (current version) zip. Extract all.
 
-    ```
-    $> wget --no-check-certificate https://wordpress.org/latest.zip
-    ```
+```bash
+$> wget --no-check-certificate https://wordpress.org/latest.zip
+```
 
 In the extracted `wordpress` folder, are all sources files from wordpress.
 
-   <img src="./assets/wordpress_files.png">
+<img src="./assets/wordpress_files.png">
 
 Rename the current `/public/index.php` into `/public/equal.php`
 Under `/public/`. This will make the wordpress blog page the page we access when navigating to http://equal.local/.
@@ -232,7 +225,7 @@ You should continue the installation in the browser and wordpress will create it
 
 **Example of wp-config.php**
 <details>
-  <summary>Example of wp-config.php</summary>
+<summary>Example of wp-config.php</summary>
 
 ```php
 <?php
@@ -341,12 +334,13 @@ etc/hosts
 
 ```
 
-</details>
+**Once the wordpress tables are created. Connect to it using phpmyadmin and in wp_options table change the siteurl and home  entries by http://wpeq.local in (option_name) column.**
+
 
 
 ### Finish installing Wordpress in your browser
-<details>
-<summary>Go to http://equal.local/wordpress/</summary>
+ 
+Go to http://equal.local/wordpress/
 
 We can check that `equal_db` is the db host and `equal` database exist in phpmyadmin. The database will be empty at first.
 Then, when we will finish the installation by going to https//equal.local/wp-admin/install.php. The `equal` database will be completed with wordpress tables.
@@ -356,12 +350,8 @@ Go to http://equal.local/wordpress/ and do the different steps to finish the ins
 At the end of the installation should be able to log with the credentials you entered and see the configuration panel at http://equal.local/wordpress/wp-admin.
 
 
-</details>
-
 ### Log in Dashboard
 
-<details>
-<summary> Log in Dashboard</summary>
 4. We can log in and go on our dashboard. We need to use our credentials from our docker-compose file and also for phpmyadmin.
 
 To have packages from equal in our `equal` database in phpmyadmin, first we have to init core package. If we want to create a new one for wordpress for example, we also need to init this package.
@@ -386,14 +376,11 @@ We can see our equal database with packages from equal and tables for wordpress.
 
 <img src="./assets/equal_db.png">
 
-</details>
+
 
 ## Case use of wordpress
 
 ###  Introduction
-<details>
-<summary>Introduction</summary>
-
 
 ## Wordpress in Vs Code
 
@@ -408,12 +395,9 @@ This is the folder where we will develop.
 
 When we have installed wordpress with our docker-compose, a new src folder was created. This is where we can develop our themes,pages, styles, add functions, etc...
 
-</details>
 
 
-<details>
-
-<summary>Creating a Wordpress plugin and child theme</summary>
+### Creating a Wordpress plugin and child theme
 
 **View of wp-content directory in vscode**
 <img src="./assets/src_folder.png" alt="pic of wp-content directory content in vscode">
@@ -443,8 +427,7 @@ Text Domain:  twentytwentyfourchild
 
 At this part of the document, Wordpress is installed in eQual. We will see now how can we develop in Wordpress with eQual.
 
-<details>
-<summary>Plugin Equal in admin dashboard in `wp-content/plugins`</summary>
+### Plugin Equal in admin dashboard in `wp-content/plugins`
 
 #### 1. Let's create the plugin in `wp-content/plugins`. Create a new folder with the name of your choice for our plugin. Here we will call our plugin `equal`  Then create an `index.php` file and a new folder for js.
 
@@ -494,8 +477,7 @@ add_action('admin_enqueue_scripts', function($hook) {
 });
 
 ```
-</details>
-<details>
+
 Now, we want to display our plugin in our wordpress dashboard. To do that, we need to create a menu.
 
 In our case, we want to have a menu called  `equal UI`, and display clients from our User entity from our core package.
@@ -606,11 +588,8 @@ As we can see below in the picture, eQual Users from core package are displayed.
 
 <img src="./assets/equal_users.png" alt="picture of eQual Users list view in wordpress admin dashboard">
 
-</details>
 
-<details>
-
-<summary>Create a new user, validate and log in</summary>
+### Create a new user, validate and log in
 
 Now, for our tasks, we want to create a new user but when we click on the `create` button, the view form show anything. We need first to create a new account and log in  in equal.local/auth because we don't have the permission. We also need to do some changes in our `.htaccess` file to get the user info with a token.
 
@@ -690,8 +669,6 @@ Now, we have our `htaccess `, when we are logged in, we can see information abou
 When we go on `equal.local/ `, we have a wordpress welcome page.
 
 
-</details>
-
 
 ## Displaying tasks with eQual in Wordpress
 
@@ -715,20 +692,15 @@ When we have our classes and views, now let us init the package.
 
 Check the tables are created in the database.
 
-</details>
+
 
 
 #### 2. Equal plugin
 
-<details>
-<summary>Equal plugin</summary>
 
-   We will use the `equal` plugin in the previous part and activated.
-
-   We have already created a `equal UI` menu, in this menu we will create our tasks, employees and categories.
-
-   ​As we can see in our picture, we have created some tasks. We want to display them in a page with some style.
-
+We will use the `equal` plugin in the previous part and activated.
+We have already created a `equal UI` menu, in this menu we will create our tasks, employees and categories.
+​As we can see in our picture, we have created some tasks. We want to display them in a page with some style.
 
 ### `equal` plugin:
 
@@ -967,4 +939,3 @@ Go to equal.local to your wordpress index page, click on edit page, then add a s
 
 When we go to the wordpress page, we will now see our projects.
 
-</details>
